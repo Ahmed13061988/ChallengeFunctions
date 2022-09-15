@@ -8,20 +8,29 @@ const poll = {
 };
 const btn = document.querySelector(".poll");
 
+const displayResults = function (type = []) {
+  if (Array.isArray(type)) {
+    console.log(type);
+  } else console.log(`Poll results are: ${type}`);
+};
+
 const registerNewAnswer = function () {
   let input = Number(
     prompt(`${poll.question}
-    ${poll.options[0]}
-    ${poll.options[1]}
-    ${poll.options[2]}
-    ${poll.options[3]}
+    ${this.options[0]}
+    ${this.options[1]}
+    ${this.options[2]}
+    ${this.options[3]}
     (Write option number)`)
   );
-  console.log(typeof input);
-  if (input >= 0 && input <= 3) return poll.answers[input]++;
-  else console.log("The number is not correct");
+  if (input >= 0 && input <= 3 && typeof input === "number") {
+    return this.answers[input]++;
+  } else {
+    console.log("The input is not correct");
+  }
+  displayResults(this.answers);
 };
 
 const registerNewAnswerBind = registerNewAnswer.bind(poll);
-registerNewAnswer();
-//registerNewAnswerFinall();
+
+btn.addEventListener("click", registerNewAnswerBind);
