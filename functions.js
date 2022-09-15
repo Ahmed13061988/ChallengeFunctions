@@ -9,18 +9,19 @@ const poll = {
 const btn = document.querySelector(".poll");
 
 const registerNewAnswer = function () {
-  let input = prompt(`${poll.question}
+  let input = Number(
+    prompt(`${poll.question}
     ${poll.options[0]}
     ${poll.options[1]}
     ${poll.options[2]}
     ${poll.options[3]}
-    (Write option number)`);
-
-  let finallInput = Number(input);
-  console.log(poll.answers);
-  if (finallInput >= 0 && finallInput <= 3) return poll.answers[finallInput]++;
-  console.log(poll.answers);
+    (Write option number)`)
+  );
+  console.log(typeof input);
+  if (input >= 0 && input <= 3) return poll.answers[input]++;
+  else console.log("The number is not correct");
 };
 
-const registerNewAnswerFinall = registerNewAnswer.bind(poll);
-registerNewAnswerFinall();
+const registerNewAnswerBind = registerNewAnswer.bind(poll);
+registerNewAnswer();
+//registerNewAnswerFinall();
