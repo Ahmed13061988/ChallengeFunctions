@@ -5,7 +5,8 @@ const poll = {
   options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
   // This generates [0, 0, 0, 0]. More in the next section! answers: new Array(4).fill(0),
   answers: new Array(4).fill(0),
-  registerNewAnswer: function () {
+
+  registerNewAnswer() {
     let input = Number(
       prompt(
         `${poll.question}\n${this.options.join("\n")}
@@ -28,3 +29,5 @@ const poll = {
 const btn = document.querySelector(".poll");
 
 btn.addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [5, 3, 2] });
